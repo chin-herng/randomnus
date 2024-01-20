@@ -1,48 +1,50 @@
-// SpinWheel.js
-
-import React, { useState, useRef } from 'react';
 import './SpinWheel.css';
+import React, { useState } from 'react';
+import { Wheel } from 'react-custom-roulette'
+import PLACES from '../assets/place';
 
-const SpinWheel = () => {
-  const wheelRef = useRef(null);
-  const [isSpinning, setIsSpinning] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+function SpinWheel() {
+  const [mustSpin, setMustSpin] = useState(false);
+  const [prizeNumber, setPrizeNumber] = useState(0);
+  const [spun, setSpun] = useState(false);
 
-  const wheelItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
-
-  const startSpin = () => {
-    if (!isSpinning) {
-      const randomDegrees = Math.floor(Math.random() * 360) + 360 * 5; // Spin at least 5 times
-      wheelRef.current.style.transition = 'transform 3s ease-out';
-      wheelRef.current.style.transform = `rotate(${randomDegrees}deg)`;
-      setIsSpinning(true);
-
-      // Simulate a delay for the spin to finish (adjust timing based on your needs)
-      setTimeout(() => {
-        const selectedSegment = Math.floor((randomDegrees % 360) / (360 / wheelItems.length));
-        setSelectedItem(wheelItems[selectedSegment]);
-        setIsSpinning(false);
-        wheelRef.current.style.transition = 'none';
-        wheelRef.current.style.transform = 'rotate(0deg)';
-      }, 3000); // 3 seconds
+  const backgroundColors = ['#caa07f', '#e1af87', '#e6ba92', '#eed5b9', '#f6dfc5'];
+  const data = PLACES.map((elem, idx) => (
+    {
+      option: elem, style: { backgroundColor: backgroundColors[idx % backgroundColors.length], textColor: 'black' }
     }
-  };
+  ));
 
+  const [spinWheelData, setSpinWheelData] = useState(data);
+
+  const handleSpinClick = () => {
+    setSpun(true);
+    const newPrizeNumber = Math.floor(Math.random() * data.length)
+    setPrizeNumber(newPrizeNumber)
+    setMustSpin(true)
+  }
   return (
-    <div className="spin-wheel-container">
-      <div className={`wheel ${isSpinning ? 'spinning' : ''}`} ref={wheelRef}>
-        {wheelItems.map((item, index) => (
-          <div key={index} className="wheel-segment" style={{ transform: `rotate(${index * (360 / wheelItems.length)}deg)` }}>
-            {item}
-          </div>
-        ))}
-      </div>
-      <button className="spin-button" onClick={startSpin} disabled={isSpinning}>
-        Spin the Wheel
+    <>
+      <Wheel
+      mustStartSpinning={mustSpin}
+      prizeNumber={prizeNumber}
+      data={spinWheelData}
+      spinDuration={0.1}
+      fontSize={15}
+
+      onStopSpinning={() => {
+        setMustSpin(false)
+      }}
+      />
+      <button className="spin-button button" onClick={handleSpinClick}>
+        {spun ? 'SPIN AGAIN' : 'SPIN'}
       </button>
-      {selectedItem && <p>Selected Item: {selectedItem}</p>}
-    </div>
+      <p className="blank-line"></p>
+      {
+        spun ? <button className="proceed-button button">PROCEED</button> : null
+      }
+    </>
   );
-};
+}
 
 export default SpinWheel;

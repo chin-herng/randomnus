@@ -5,7 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: grey;
+  background-image: url('./assets/wheel\ background.jpeg');
+  background-position: 50% 0%;
+  background-size: 120%;
 }
 
 code {
