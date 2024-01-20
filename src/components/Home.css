@@ -1,0 +1,14 @@
+/* Home.css */
+
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100% of the viewport height */
+  }
+  
+  .big-button {
+    font-size: 1.5em; /* Adjust the font size as needed */
+    padding: 10px 20px; /* Adjust padding as needed */
+  }
+  
