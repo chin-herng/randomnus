@@ -1,24 +1,38 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import Home from './components/Home';
 import { Wheel } from 'react-custom-roulette'
 
 const data = [
   { option: '0', style: { backgroundColor: 'green', textColor: 'black' } },
-  { option: '1', style: { backgroundColor: 'white' } },
+  { option: '1', style: { backgroundColor: 'white', textColor: 'black' } },
   { option: '2' },
 ]
 
 function App() {
+  const [mustSpin, setMustSpin] = useState(false);
+  const [prizeNumber, setPrizeNumber] = useState(0);
+
+  const handleSpinClick = () => {
+    const newPrizeNumber = Math.floor(Math.random() * data.length)
+    setPrizeNumber(newPrizeNumber)
+    setMustSpin(true)
+  }
+
   return (
     <>
       <Wheel
         mustStartSpinning={mustSpin}
-        prizeNumber={3}
+        prizeNumber={prizeNumber}
         data={data}
-        backgroundColors={['#3e3e3e', '#df3428']}
-        textColors={['#ffffff']}
+
+        onStopSpinning={() => {
+          setMustSpin(false)
+        }}
       />
+      <button className="big-button" onClick={handleSpinClick}>
+        SPIN
+      </button>
     </>
   )
 }
