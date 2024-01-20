@@ -1,3 +1,16 @@
+.Main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.big-button {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0%); 
+}
+
 .App {
   text-align: center;
 }
