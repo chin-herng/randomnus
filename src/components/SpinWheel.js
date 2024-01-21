@@ -22,6 +22,7 @@ function SpinWheel() {
     const newPrizeNumber = Math.floor(Math.random() * data.length)
     setPrizeNumber(newPrizeNumber)
     setMustSpin(true)
+
   }
   return (
     <>
@@ -30,7 +31,7 @@ function SpinWheel() {
       prizeNumber={prizeNumber}
       data={spinWheelData}
       spinDuration={0.1}
-      fontSize={15}
+      fontSize={20}
 
       onStopSpinning={() => {
         setMustSpin(false)
@@ -38,11 +39,8 @@ function SpinWheel() {
       />
       <button className="spin-button button" onClick={handleSpinClick}>
         {spun ? 'SPIN AGAIN' : 'SPIN'}
-      </button>
-      <p className="blank-line"></p>
-      {
-        spun ? <button className="proceed-button button">PROCEED</button> : null
-      }
+      </button><br></br>
+      {spun ? <button className="proceed-button button">PROCEED</button> : null}
     </>
   );
 }
