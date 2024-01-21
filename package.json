@@ -9,6 +9,7 @@
     "react": "^18.2.0",
     "react-custom-roulette": "^1.4.1",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
     "react-spin-to-wheel": "^2.0.6",
     "react-spinning-wheel": "^2.1.0",

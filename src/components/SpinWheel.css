@@ -2,13 +2,6 @@
   height: 20px;
 }
 
-.button {
-  background-color: #c8a68d;
-  border-radius: 10px;
-  font-size: 25px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
 .spin-button {
     position: relative;
     left: 50%;

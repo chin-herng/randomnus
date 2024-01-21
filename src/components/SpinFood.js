@@ -1,7 +1,7 @@
 import './SpinWheel.css';
 import React, { useState } from 'react';
 import { Wheel } from 'react-custom-roulette'
-import PLACES from '../assets/place';
+import FOOD from '../assets/food';
 import { Link } from 'react-router-dom';
 
 function SpinWheel() {
@@ -10,7 +10,7 @@ function SpinWheel() {
   const [spun, setSpun] = useState(false);
 
   const backgroundColors = ['#caa07f', '#e1af87', '#e6ba92', '#eed5b9', '#f6dfc5'];
-  const data = PLACES.map((elem, idx) => (
+  const data = FOOD.map((elem, idx) => (
     {
       option: elem, style: { backgroundColor: backgroundColors[idx % backgroundColors.length], textColor: 'black' }
     }
